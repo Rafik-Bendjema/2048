@@ -14,23 +14,49 @@ class _GamepageState extends State<Gamepage> {
 
   @override
   void initState() {
-    elements = gamelogic.generate(elements);
+    elements = gamelogic.generate(elements, (count) {
+      setState(() {
+        setState(() {
+          score = count;
+        });
+      });
+    });
+
     super.initState();
   }
 
   void replayGame() {
     setState(() {
       elements = List.filled(16, 0);
-      elements = gamelogic.generate(elements);
+      elements = gamelogic.generate(elements, (count) {
+        setState(() {
+          setState(() {
+            score = count;
+          });
+        });
+      });
     });
   }
 
+  int score = 0;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            height: 60,
+            width: 150,
+            decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 168, 170, 255),
+                borderRadius: BorderRadius.all(Radius.circular(50))),
+            child: Center(
+                child: Text(
+              score.toString(),
+              style: const TextStyle(fontSize: 20),
+            )),
+          ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.width, // Ensure it's a square
@@ -44,7 +70,13 @@ class _GamepageState extends State<Gamepage> {
                   await Future.delayed(const Duration(milliseconds: 350))
                       .then((v) {
                     setState(() {
-                      elements = gamelogic.generate(elements);
+                      elements = gamelogic.generate(elements, (count) {
+                        setState(() {
+                          setState(() {
+                            score = count;
+                          });
+                        });
+                      });
                     });
                   });
                 } else if (details.primaryVelocity! > 0) {
@@ -55,7 +87,13 @@ class _GamepageState extends State<Gamepage> {
                   await Future.delayed(const Duration(milliseconds: 350))
                       .then((v) {
                     setState(() {
-                      elements = gamelogic.generate(elements);
+                      elements = gamelogic.generate(elements, (count) {
+                        setState(() {
+                          setState(() {
+                            score = count;
+                          });
+                        });
+                      });
                     });
                   });
                 }
@@ -69,7 +107,13 @@ class _GamepageState extends State<Gamepage> {
                   await Future.delayed(const Duration(milliseconds: 350))
                       .then((v) {
                     setState(() {
-                      elements = gamelogic.generate(elements);
+                      elements = gamelogic.generate(elements, (count) {
+                        setState(() {
+                          setState(() {
+                            score = count;
+                          });
+                        });
+                      });
                     });
                   });
                 } else if (details.primaryVelocity! > 0) {
@@ -80,7 +124,13 @@ class _GamepageState extends State<Gamepage> {
                   await Future.delayed(const Duration(milliseconds: 350))
                       .then((v) {
                     setState(() {
-                      elements = gamelogic.generate(elements);
+                      elements = gamelogic.generate(elements, (count) {
+                        setState(() {
+                          setState(() {
+                            score = count;
+                          });
+                        });
+                      });
                     });
                   });
                 }

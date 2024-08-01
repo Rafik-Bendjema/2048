@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:matrices/matrices.dart';
 
 class Gamelogic {
-  List<double> generate(List<double> l) {
+  List<double> generate(List<double> l, Function(int l) fun) {
     List<int> indexes = [];
+    int sum = 0;
     for (int i = 0; i < l.length; i++) {
       if (l[i] == 0) {
         indexes.add(i);
@@ -16,6 +17,10 @@ class Gamelogic {
     }
     int index = Random().nextInt(indexes.length);
     l[indexes[index]] = 2;
+    for (int i = 0; i < l.length; i++) {
+      sum += l[i].toInt();
+    }
+    fun(sum);
     return l;
   }
 
